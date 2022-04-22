@@ -42,7 +42,7 @@ https://user-images.githubusercontent.com/9356891/164586842-2fc10a3e-fce5-4a14-9
 
 ### Setting up the game
 
-The table comes equipped with a dice that can be used to determine who starts the game.  
+The table comes equipped with a die that can be used to determine who starts the game.  
 The dice will update its faces based on how many players are at the table when you pick it up.
 
 To take your mulligans, the table provides a button to help shuffle your hand in and draw 7 cards.  
