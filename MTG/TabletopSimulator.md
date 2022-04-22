@@ -67,6 +67,14 @@ Tap `tab` to do a ping.
 
 Press and hold `tab` to point from one object to another.
 
+### Draw, scry, mill, reveal
+
+The buttons support using your keyboard to specify an amount.  
+When you hover them, type a number, then move your pointer away to confirm the amount. Multi-digit numbers are supported.
+
+https://user-images.githubusercontent.com/9356891/164614676-348b8472-0324-4fe0-88af-0c1ffdbd4aba.mp4
+
+
 ### Fetching basic lands
 
 https://user-images.githubusercontent.com/9356891/164590789-fa476903-03f7-47be-9e3a-d27d68050883.mp4
@@ -121,6 +129,20 @@ https://user-images.githubusercontent.com/9356891/164612777-06434753-c802-4f68-a
 Type `scryfall <cardname>` in the chat and the cards will be automatically imported to your pointer's location.
 
 Also works with image URLs and deck URLs, although the physical importer will separate your commander and tokens for you so it is recommended for deck imports.
+
+### Preventing untaps
+
+Some cards are recognized by default, but you can manually add the "frozen" effect to cards to prevent untapping.  
+This only works when using encoder, the "frozen counter" object does not change untap behaviour.
+
+https://user-images.githubusercontent.com/9356891/164614105-be3a489d-c75f-48fb-b6c7-38909f9b6895.mp4
+
+### Copying with counters
+
+Copy and pasting cards manually does not preserve +1/+1 counters or other encoder effects.  
+Using the exact-copy button, copies can be made to include counters.
+
+https://user-images.githubusercontent.com/9356891/164614351-d1c9896b-3bb1-4eb7-9e1f-9d1b9125c69b.mp4
 
 ### Saving and loading games
 
