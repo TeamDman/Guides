@@ -95,6 +95,10 @@ https://user-images.githubusercontent.com/9356891/164614676-348b8472-0324-4fe0-8
 
 Holding `alt+shift` will preview the bottom face of the hovered card, or the bottom card of a deck.
 
+### Drop the bottom card of a deck
+
+While holding a deck in the air, `alt+right-click` will drop the bottommost card.
+
 ### Fetching basic lands
 
 https://user-images.githubusercontent.com/9356891/164590789-fa476903-03f7-47be-9e3a-d27d68050883.mp4
