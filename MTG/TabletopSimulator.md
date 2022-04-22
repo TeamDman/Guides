@@ -1,6 +1,6 @@
 # Playing Magic: The Gathering in Tabletop Simulator
 
-# Prerequisites
+## Prerequisites
 
 You must own and have [Tabletop Simulator](https://store.steampowered.com/app/286160/Tabletop_Simulator/) installed.
 
