@@ -29,12 +29,23 @@ Hitting `p` changes the camera type (which sometimes gets hit accidentally), pre
 
 You will need to have a link to your deck on a website like tappedout or archidekt, or you will need your decklist copied to your clipboard.
 
-https://user-images.githubusercontent.com/9356891/164586842-2fc10a3e-fce5-4a14-9f98-e887a75006ef.mp4
-
 If you have a link, you can grab an "MTG Loader" object out of the infinite bag at corners of the table.  
 You can paste in your link, or you can open the notebook tab at the top of the screen and paste your list in the tab for your assigned colour.  
 Once your deck is loaded in, you can delete the spawner object with the `delete` or `backspace` keys.  
 Move your deck and commander to the appropriate positions, and the tokens can be placed off to the side.
+
+https://user-images.githubusercontent.com/9356891/164586842-2fc10a3e-fce5-4a14-9f98-e887a75006ef.mp4
+
+
+### Setting up the game
+
+The table comes equipped with a dice that can be used to determine who starts the game.  
+The dice will update its faces based on how many players are at the table when you pick it up.
+
+To take your mulligans, the table provides a button to help shuffle your hand in and draw 7 cards.  
+Once everyone at the table has indicated that they are keeping their hands, whoever won the roll can start the game.
+
+https://user-images.githubusercontent.com/9356891/164588696-ae1d9b3c-2189-4b80-a084-05aab7804809.mp4
 
 ## Matchmaking
 
