@@ -12,6 +12,10 @@ You must own and have [Tabletop Simulator](https://store.steampowered.com/app/28
 ### Open Tabletop Simulator
 ![the Tabletop Simulator menu screen](TabletopSimulator/Tabletop_Simulator_OZot9oqBzJ.png)
 
+### Enable dark mode
+
+https://user-images.githubusercontent.com/9356891/164618314-d72cfe10-6751-4882-a2a0-6e6889ffd2de.mp4
+
 ### Play the tutorial
 
 The tutorial is short and gives an introduction to the basics, such as moving decks around, drawing cards, and shuffling.
