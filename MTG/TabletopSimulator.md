@@ -29,7 +29,7 @@ Hitting `p` changes the camera type (which sometimes gets hit accidentally), pre
 
 There are a few ways to load in your deck. You will need to have a link to your deck on a website like tappedout or archidekt, or you will need your decklist copied to your clipboard.
 
-![importing a deck using the deckloader](TabletopSimulator/import-url.webm)
+![importing a deck using the deckloader](TabletopSimulator/import-url.mp4)
 ## Matchmaking
 
 ## Tips and Tricks
