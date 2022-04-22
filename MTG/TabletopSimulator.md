@@ -12,6 +12,10 @@ You must own and have [Tabletop Simulator](https://store.steampowered.com/app/28
 ### Open Tabletop Simulator
 ![the Tabletop Simulator menu screen](TabletopSimulator/Tabletop_Simulator_OZot9oqBzJ.png)
 
+### Play the tutorial
+
+The tutorial is short and gives an introduction to the basics, such as moving decks around, drawing cards, and shuffling.
+
 ### Create a lobby
 ![the create lobby menu](TabletopSimulator/Tabletop_Simulator_XTv62GXOaP.png)  
 ![the player count menu](TabletopSimulator/Tabletop_Simulator_V5zdva7ozL.png)
@@ -36,17 +40,29 @@ Move your deck and commander to the appropriate positions, and the tokens can be
 
 https://user-images.githubusercontent.com/9356891/164586842-2fc10a3e-fce5-4a14-9f98-e887a75006ef.mp4
 
-
 ### Setting up the game
 
 The table comes equipped with a dice that can be used to determine who starts the game.  
 The dice will update its faces based on how many players are at the table when you pick it up.
 
 To take your mulligans, the table provides a button to help shuffle your hand in and draw 7 cards.  
-Once everyone at the table has indicated that they are keeping their hands, whoever won the roll can start the game.
+Once everyone at the table has indicated that they're keeping their starting hands, whoever won the roll can start the game.
 
 https://user-images.githubusercontent.com/9356891/164588696-ae1d9b3c-2189-4b80-a084-05aab7804809.mp4
 
-## Matchmaking
+### Playing
+
+From here on, continue as if it was paper magic.  
+There are a bunch of custom scripted assets to help play the game, but I recommend being in voice chat with the people at the table.  
+There are discord servers ([invite](https://discord.gg/CH3Gaefygr)) available to help with matchmaking.
 
 ## Tips and Tricks
+
+This section will be more a showcase of features than a direct explanation.  
+
+### Fetching lands
+
+https://user-images.githubusercontent.com/9356891/164590789-fa476903-03f7-47be-9e3a-d27d68050883.mp4
+
+
+### Making tokens
