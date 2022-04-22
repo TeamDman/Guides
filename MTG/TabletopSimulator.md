@@ -35,6 +35,11 @@ From here, you can pan the camera around in a few ways: hold the middle mouse bu
 If your camera gets messed up, pressing `space` will reset the camera to your seating position.  
 Hitting `p` changes the camera type (which sometimes gets hit accidentally), pressing `p` again will cycle through the types, I recommend 3rd person.
 
+### Invite people
+
+If you're playing with friends, they can join you or you can send invites through Steam.  
+If you're playing with people on a discord, usually people create public password protected lobbies and share the information in discord.
+
 ### Load in your deck
 
 You will need to have a link to your deck on a website like tappedout or archidekt, or you will need your decklist copied to your clipboard.
