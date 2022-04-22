@@ -16,6 +16,8 @@ You must own and have [Tabletop Simulator](https://store.steampowered.com/app/28
 
 The tutorial is short and gives an introduction to the basics, such as moving decks around, drawing cards, and shuffling.
 
+Press the lightbulb button on the main menu to launch the tutorial.
+
 ### Create a lobby
 ![the create lobby menu](TabletopSimulator/Tabletop_Simulator_XTv62GXOaP.png)  
 ![the player count menu](TabletopSimulator/Tabletop_Simulator_V5zdva7ozL.png)
@@ -67,6 +69,12 @@ Tap `tab` to do a ping.
 
 Press and hold `tab` to point from one object to another.
 
+### Zooming in on cards
+
+Hold `alt` while hovering a card to see an enlarged preview.  
+Scroll wheel while previewing to change the preview scale.
+Use `q` and `e` to rotate the preview.
+
 ### Draw, scry, mill, reveal
 
 The buttons support using your keyboard to specify an amount.  
@@ -82,6 +90,12 @@ https://user-images.githubusercontent.com/9356891/164590789-fa476903-03f7-47be-9
 ### Tutoring
 
 https://user-images.githubusercontent.com/9356891/164610600-377e10dd-d387-4af7-8a4f-2ec6f0ddf20c.mp4
+
+### Changing rotation snap
+
+Click this button.
+
+![image](https://user-images.githubusercontent.com/9356891/164614851-1eed043a-fec5-4eab-8768-ce8e36516e74.png)
 
 
 ### Making tokens
@@ -130,6 +144,33 @@ Type `scryfall <cardname>` in the chat and the cards will be automatically impor
 
 Also works with image URLs and deck URLs, although the physical importer will separate your commander and tokens for you so it is recommended for deck imports.
 
+### Cascade, reveal until type, helper objects
+
+Encoded decks have context-menu options for cascade and reveal-until-type.  
+Additionally, the table also has resources for some commander-specific effects, like Atla Palani.
+
+https://user-images.githubusercontent.com/9356891/164616298-53b46a34-76fb-408b-b299-29debb15e416.mp4
+
+### Locking and unlocking objects
+
+Objects can be locked and unlocked by pressing "l".  
+Locked objects can't be moved or selected (Ctrl+clicking objects forces selection to still work)
+
+Scripts can also be used to set objects as uninteractable, which is like being locked but cannot be unlocked.  
+This is used by table creators to prevent people from accidentally messing with the table.  
+If the map is loaded while scripts are disabled, then you can still interact with these objects (since the script to lock them will not run).
+
+https://user-images.githubusercontent.com/9356891/164616675-e49701b6-944e-46af-a9ac-7d2a5bdfa2c0.mp4
+
+
+### Saving and loading objects
+
+Groups of objects can be saved and loaded in different games.  
+You must be promoted to load in saved objects.
+
+https://user-images.githubusercontent.com/9356891/164617188-e2ce3f72-628e-445f-b522-679cde33e2bb.mp4
+
+
 ### Preventing untaps
 
 Some cards are recognized by default, but you can manually add the "frozen" effect to cards to prevent untapping.  
@@ -150,5 +191,34 @@ Games can be saved entirely and loaded later.
 If using host migration or experiencing bad internet, it may be a good idea to save the game in case the game crashes.
 
 https://user-images.githubusercontent.com/9356891/164613342-2c4788ab-3f96-4775-942b-bc07cb0b9864.mp4
+
+### Revealing your hand to one player
+
+Click your name in the top right and hit "change team".  
+Players on the same team will be able to see eachother's hands.  
+
+If you need to see someone else's hand but they should not see yours, then you can flip your hand face down before both joining a team.  
+Alternatively, you can create a hidden zone using the zone tool, then the revealing player can flip their hand face down and move it into the hidden zone.
+
+![image](https://user-images.githubusercontent.com/9356891/164615588-9deaf08d-f450-4d2b-aa56-857601bf9646.png)
+
+### Revealing all hands to one player, gamemaster role, permissions
+
+Players in the black (gamemaster) seat can see the hands of all players and can still interact with the table.  
+Grey (spectator) players cannot see hands and cannot interact with the table.
+
+Most tables have an auto-promote feature. Players must be promoted to spawn in saved objects and to clone or delete objects.
+Promoted players can change the colour of other players, but cannot self-assign the gamemaster color.
+
+
+### Importing single items from a table
+
+Sometimes tables have a resource that you want to copy into another one without having to save the object first.
+
+Because the steam workshop publishes tables and not objects, this is also useful for loading in utility objects from workshop maps.
+
+https://user-images.githubusercontent.com/9356891/164618046-41439b35-459f-4ea3-b0c5-4cc207e20daf.mp4
+
+
 
 
