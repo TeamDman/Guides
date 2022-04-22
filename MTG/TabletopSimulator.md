@@ -91,6 +91,9 @@ When you hover them, type a number, then move your pointer away to confirm the a
 
 https://user-images.githubusercontent.com/9356891/164614676-348b8472-0324-4fe0-88af-0c1ffdbd4aba.mp4
 
+### Look at face-down cards
+
+Holding `alt+shift` will preview the bottom face of the hovered card, or the bottom card of a deck.
 
 ### Fetching basic lands
 
