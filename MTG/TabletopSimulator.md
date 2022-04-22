@@ -59,10 +59,74 @@ There are discord servers ([invite](https://discord.gg/CH3Gaefygr)) available to
 ## Tips and Tricks
 
 This section will be more a showcase of features than a direct explanation.  
+Some of these features are custom scripts part of the table referenced earlier.
 
-### Fetching lands
+### Pinging and pointing
+
+Tap `tab` to do a ping.
+
+Press and hold `tab` to point from one object to another.
+
+### Fetching basic lands
 
 https://user-images.githubusercontent.com/9356891/164590789-fa476903-03f7-47be-9e3a-d27d68050883.mp4
 
+### Tutoring
+
+https://user-images.githubusercontent.com/9356891/164610600-377e10dd-d387-4af7-8a4f-2ec6f0ddf20c.mp4
+
 
 ### Making tokens
+
+Part of the table scripting is card "encoding", which adds extra features to the cards.  
+Encoded cards have a button to spawn in related tokens, though some new cards don't have their tokens configured properly yet.
+Ctrt+C and Ctrl+V can be used to copy and paste tokens once imported.
+
+https://user-images.githubusercontent.com/9356891/164610828-24b5ae03-e0c7-4de4-b615-2f397452c2ff.mp4
+
+### Applying +1/+1 counters, changing power/toughness
+
+The encoder also adds tiny buttons for showing +1/+1 counters and power/toughness modifications.  
+The table also has other resources to help track, it's up to you how you want to manage it.  
+Some people prefer to use the drop-on counter for managing large amounts of tokens, I just like copy and pasting them.
+
+https://user-images.githubusercontent.com/9356891/164611539-70afe0e9-2b89-46a3-8838-99d3dd89ceca.mp4
+
+### Hiding your hand, fixing glitches, rewinding time.
+
+Mostly done by accident, press "H" to hide your hand from the bottom of your screen.
+If you are having other issues with your hand or weird render glitches or buttons not working, reloading the table usually helps.  
+This can be done by using the left arrow at the top of the screen to rewind time a small amount. Ctrl+Z is also bound to do this.  
+Note: rewinding sometimes takes a while due to all the scripts on the tables.
+
+### Arranging objects
+
+To spread out a deck, right click it and use the context menu option "spread".
+
+To organize spread out cards (or other objects), select all of them and pick them up, then hit a number key on your keyboard.
+
+To group cards into a deck, select them all and press `g`.
+
+https://user-images.githubusercontent.com/9356891/164612144-b4a9e6d6-b575-4551-9e3a-c3be8e95ec76.mp4
+
+### Ability counters
+
+The encoder has a menu for most keywords, and some tables also have actual counters that can be used.
+
+https://user-images.githubusercontent.com/9356891/164612777-06434753-c802-4f68-a449-11634ec5d41d.mp4
+
+
+### Importing cards by name or URL
+
+Type `scryfall <cardname>` in the chat and the cards will be automatically imported to your pointer's location.
+
+Also works with image URLs and deck URLs, although the physical importer will separate your commander and tokens for you so it is recommended for deck imports.
+
+### Saving and loading games
+
+Games can be saved entirely and loaded later.  
+If using host migration or experiencing bad internet, it may be a good idea to save the game in case the game crashes.
+
+https://user-images.githubusercontent.com/9356891/164613342-2c4788ab-3f96-4775-942b-bc07cb0b9864.mp4
+
+
