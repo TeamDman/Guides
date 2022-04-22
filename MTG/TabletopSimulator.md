@@ -27,9 +27,15 @@ Hitting `p` changes the camera type (which sometimes gets hit accidentally), pre
 
 ### Load in your deck
 
-There are a few ways to load in your deck. You will need to have a link to your deck on a website like tappedout or archidekt, or you will need your decklist copied to your clipboard.
+You will need to have a link to your deck on a website like tappedout or archidekt, or you will need your decklist copied to your clipboard.
 
-![importing a deck using the deckloader](TabletopSimulator/import-url.mp4)
+https://user-images.githubusercontent.com/9356891/164586842-2fc10a3e-fce5-4a14-9f98-e887a75006ef.mp4
+
+If you have a link, you can grab an "MTG Loader" object out of the infinite bag at corners of the table.  
+You can paste in your link, or you can open the notebook tab at the top of the screen and paste your list in the tab for your assigned colour.  
+Once your deck is loaded in, you can delete the spawner object with the `delete` or `backspace` keys.  
+Move your deck and commander to the appropriate positions, and the tokens can be placed off to the side.
+
 ## Matchmaking
 
 ## Tips and Tricks
