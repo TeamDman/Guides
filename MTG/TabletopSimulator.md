@@ -160,6 +160,10 @@ Type `scryfall <cardname>` in the chat and the cards will be automatically impor
 
 Also works with image URLs and deck URLs, although the physical importer will separate your commander and tokens for you so it is recommended for deck imports.
 
+For advanced syntax search], you can use the pattern `scryfall search <query>` in the chat  
+Example: `scryfall search t:dragon cmc=2`  
+This should support full syntax rules from scryfall, see [here](https://scryfall.com/docs/syntax) for the guide.
+
 ### Cascade, reveal until type, helper objects
 
 Encoded decks have context-menu options for cascade and reveal-until-type.  
