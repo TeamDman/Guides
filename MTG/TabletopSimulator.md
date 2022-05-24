@@ -9,6 +9,8 @@ You must own and have [Tabletop Simulator](https://store.steampowered.com/app/28
 ### Subscribe to an MTG-focused table in the Steam workshop. [example](https://steamcommunity.com/sharedfiles/filedetails/?id=2296042369), [example](https://steamcommunity.com/sharedfiles/filedetails/?id=2246296827)  
 [![a subscribed table on the steam workshop](TabletopSimulator/firefox_P6zOJWfP8e.png)](https://steamcommunity.com/sharedfiles/filedetails/?id=2296042369)
 
+(The same author has other tables for 6 and 8 players [link](https://steamcommunity.com/profiles/76561197968157267/myworkshopfiles/))
+
 ### Open Tabletop Simulator
 ![the Tabletop Simulator menu screen](TabletopSimulator/Tabletop_Simulator_OZot9oqBzJ.png)
 
