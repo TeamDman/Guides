@@ -21,7 +21,7 @@ provider "azurerm" {
 }
 
 provider "github" {
-  owner = "teamdman-ca"
+  owner = "teamdman"
 }
 
 data "azurerm_client_config" "current" {

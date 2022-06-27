@@ -22,6 +22,6 @@ jobs:
     - uses: azure/CLI@v1
       with:
         inlineScript: |
-          az storage blob upload-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --auth-mode login --source Content --destination ${{ secrets.STORAGE_CONTAINER_NAME }}
+          az storage blob upload-batch --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --auth-mode login --source AKS/Content --destination ${{ secrets.STORAGE_CONTAINER_NAME }}
     - run: az logout
       if: always()
