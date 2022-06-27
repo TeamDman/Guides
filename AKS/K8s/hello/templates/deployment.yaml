@@ -27,3 +27,15 @@ spec:
               memory: 256Mi
           ports:
             - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: persistent-storage
+      volumes:
+        # https://github.com/kubernetes-sigs/blob-csi-driver/blob/master/deploy/example/e2e_usage.md
+        - name: persistent-storage
+          csi:
+            driver: blob.csi.azure.com
+            volumeAttributes:
+              containerName: content
+              secretName: azure-secret
+              mountOptions: "-o allow_other --file-cache-timeout-in-seconds=120"

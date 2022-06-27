@@ -1,0 +1,39 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: TeamDman9201@gmail.com 
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: cert-manager-issuer-account-key-staging
+    solvers:
+    - dns01:
+        azureDNS:
+          subscriptionID: {{ .Values.sub}}
+          resourceGroupName: {{ .Values.rg}}
+          hostedZoneName: {{ .Values.dns}}
+          environment: AzurePublicCloud
+          managedIdentity:
+            clientID: {{ .Values.clientId }}
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: TeamDman9201@gmail.com 
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: cert-manager-issuer-account-key-prod
+    solvers:
+    - dns01:
+        azureDNS:
+          subscriptionID: {{ .Values.sub}}
+          resourceGroupName: {{ .Values.rg}}
+          hostedZoneName: {{ .Values.dns}}
+          environment: AzurePublicCloud
+          managedIdentity:
+            clientID: {{ .Values.clientId }}

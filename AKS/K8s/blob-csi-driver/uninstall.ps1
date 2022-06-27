@@ -1,0 +1,1 @@
+helm uninstall --namespace kube-system blob-csi-driver

@@ -4,7 +4,7 @@ metadata:
   name: front
   namespace: azurewebsiets
 spec:
-  type: LoadBalancer
+  # type: LoadBalancer
   ports:
     - port: 80
   selector:
