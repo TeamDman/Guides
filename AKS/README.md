@@ -1,5 +1,9 @@
 # AKS Tutorial
 
+[Youtube link](https://www.youtube.com/watch?v=2_Xc9CSFNNQ)
+
+[![Youtube](https://i.ytimg.com/vi/2_Xc9CSFNNQ/hqdefault.jpg)](https://www.youtube.com/watch?v=2_Xc9CSFNNQ)
+
 ## Plan
 
 - Create resource group
