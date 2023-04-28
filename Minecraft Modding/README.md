@@ -1,4 +1,4 @@
-# Minecraft Modding
+# Minecraft Modding - WORK IN PROGRESS
 
 This will be an opinionated guide on how I write Minecraft mods.
 
@@ -6,7 +6,7 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
 
 ## Table of Contents
 
-- [Minecraft Modding](#minecraft-modding)
+- [Minecraft Modding - WORK IN PROGRESS](#minecraft-modding---work-in-progress)
   - [Table of Contents](#table-of-contents)
   - [Gathering the tools](#gathering-the-tools)
     - [IDE](#ide)
