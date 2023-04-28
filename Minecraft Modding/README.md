@@ -21,8 +21,7 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
     - [Changing the JDK](#changing-the-jdk)
     - [Run configurations](#run-configurations)
   - [Creating a dev world](#creating-a-dev-world)
-  - [Video checklist](#video-checklist)
-  - [Useful links](#useful-links)
+  - [Some links](#some-links)
 
 ## [Gathering the tools](#table-of-contents)
 
@@ -217,23 +216,9 @@ Alternatively, the [tool-kit](https://www.curseforge.com/minecraft/mc-mods/tool-
 /tk devenv true
 ``` -->
 
-## Video checklist
-
-- [ ] Blocks and items as singletons
-- [ ] Deferred registers
-- [ ] Events
-- [ ] Viewing Minecraft source code
-- [ ] Debugging
-- [ ] Hot reloading
-- [ ] Building jar
-- [ ] Game tests
-
-## [Useful links](#table-of-contents)
+## [Some links](#table-of-contents)
 
 
 https://docs.minecraftforge.net/en/1.19.2/
 
 https://www.youtube.com/@ModdingByKaupenjoe
-
-
-yeah it's been text and pictures so far but I think I'll swap to video and just blitz through a bunch of theory on blocks as singletons, deferred registers, events, viewing Minecraft source code, debugging, hot reloading, building jar
