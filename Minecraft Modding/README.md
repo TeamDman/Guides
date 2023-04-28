@@ -10,7 +10,7 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
   - [Table of Contents](#table-of-contents)
   - [Gathering the tools](#gathering-the-tools)
     - [IDE](#ide)
-    - [JDK](#jdk)
+    - [Java/Software Development Kit (JDK, SDK)](#javasoftware-development-kit-jdk-sdk)
     - [MDK](#mdk)
   - [Creating a repo](#creating-a-repo)
   - [Setting up IntelliJ](#setting-up-intellij)
@@ -20,6 +20,7 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
     - [Syncing Gradle](#syncing-gradle)
     - [Changing the JDK](#changing-the-jdk)
     - [Run configurations](#run-configurations)
+    - [The run configurations might use the wrong SDK](#the-run-configurations-might-use-the-wrong-sdk)
   - [Creating a dev world](#creating-a-dev-world)
   - [Some links](#some-links)
 
@@ -33,7 +34,7 @@ Install the [JetBrains Toolbox App](https://www.jetbrains.com/toolbox-app/).
 
 [Install IntelliJ IDEA](https://www.jetbrains.com/help/idea/installation-guide.html#toolbox);  Community Edition is fine. You can get the Ultimate edition for free if you're [a student](https://www.jetbrains.com/community/education/#students) or if [you do open source stuff](https://www.jetbrains.com/community/opensource/#support). Here's a [comparison](https://www.jetbrains.com/products/compare/?product=idea&product=idea-ce).
 
-### [JDK](#table-of-contents)
+### [Java/Software Development Kit (JDK, SDK)](#table-of-contents)
 
 Minecraft currently uses Java 17. You need a Java Software Development Kit (SDK) to write Java code.
 
@@ -192,6 +193,23 @@ Click `Mods` on the main menu.
 
 You should see the example mod provided with the Forge MDK.  
 ![Minecraft mod list](images/explorer_fBYealYWLj.png)
+
+### [The run configurations might use the wrong SDK](#table-of-contents)
+
+Weird issue I had.
+
+Project structure showing JBR selected:  
+![IntelliJ screenshot](images/idea64_i34FcAQQhZ.png)
+
+Module SDK showing the JBR selected:  
+![IntelliJ screenshot](images/idea64_p4AbH4PPpU.png)
+
+Run configuration claiming to use the same SDK as the module, but it says it's not the JBR:  
+![IntelliJ screenshot](images/idea64_rYIMRO5dJj.png)
+
+Yesterday it was running with a JDK I had in my program files. Today it's running with the JBR. I invalidated caches and restarted or something then I went to bed.  
+In this screenshot the log shows it using the JBR SDK, which is what you want. You can manually set the run configuration to use the JBR SDK if it is using the other one for some reason.  
+![IntelliJ screenshot](images/idea64_bhDUDaJJaX.png)
 
 ## [Creating a dev world](#table-of-contents)
 
