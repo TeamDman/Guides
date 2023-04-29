@@ -26,7 +26,8 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
   - [Regarding sidedness](#regarding-sidedness)
   - [Regarding singletons](#regarding-singletons)
   - [Regarding code from others](#regarding-code-from-others)
-  - [Creating a dev world](#creating-a-dev-world)
+  - [Texturing \& Resources](#texturing--resources)
+  - [Dev world](#dev-world)
   - [Beyond this tutorial](#beyond-this-tutorial)
 
 ## [Gathering the tools](#table-of-contents)
@@ -506,12 +507,17 @@ Having your mod available under an open source license means that people can lea
 
 https://choosealicense.com/ is a good place to start if you want to pick one according to your own desires.
 
+## [Texturing & Resources](#table-of-contents)
 
-## [Creating a dev world](#table-of-contents)
+The block has no texture. The name is not proper.  
+This is fixed by creating the necessary JSON files.
 
-I usually create a superflat world with cheats enabled.
+Instead of creating these JSON files by hand, we can use [datagens](https://docs.minecraftforge.net/en/1.19.2/datagen/) to create them for us.  
 
-Some commands I find helpful:
+
+## [Dev world](#table-of-contents)
+
+Some cheat commands I find helpful:
 
 ```
 /gamerule doDaylightCycle false
@@ -531,6 +537,10 @@ Alternatively, the [tool-kit](https://www.curseforge.com/minecraft/mc-mods/tool-
 ``` -->
 
 ## [Beyond this tutorial](#table-of-contents)
+
+Reminder that this tutorial is a work in progress.
+
+Here's some things you can do to learn more:
 
 - [Read the official Forge docs](https://docs.minecraftforge.net/en/1.19.2/)
 - [Join the official Forge discord](https://discord.minecraftforge.net/)
