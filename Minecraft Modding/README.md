@@ -20,9 +20,14 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
     - [Syncing Gradle](#syncing-gradle)
     - [Changing the JDK](#changing-the-jdk)
     - [Run configurations](#run-configurations)
-    - [The run configurations might use the wrong SDK](#the-run-configurations-might-use-the-wrong-sdk)
+  - [Switching to Parchment mappings](#switching-to-parchment-mappings)
+  - [Hotswapping](#hotswapping)
+    - [Troubleshooting](#troubleshooting)
+  - [Regarding sidedness](#regarding-sidedness)
+  - [Regarding singletons](#regarding-singletons)
+  - [Regarding code from others](#regarding-code-from-others)
   - [Creating a dev world](#creating-a-dev-world)
-  - [Some links](#some-links)
+  - [Beyond this tutorial](#beyond-this-tutorial)
 
 ## [Gathering the tools](#table-of-contents)
 
@@ -122,11 +127,7 @@ You can usually see what task the IDE is working on in the bottom right.
 
 You can see details on the sync in the Build panel on the bottom left.
 ![Build panel](images/idea64_jJqgU1pkWD.png)  
-In this case, we have a bunch of warnings about Minecraft code that is using stuff marked as deprecated.  
-Minecraft has a bunch of stuff marked `@deprecated`.  
-> In some Minecraft classes, there may be methods annotated with @Deprecated. In most situations, the annotation has a special meaning: these methods are fine to override, but these methods should not be directly called, instead preferring a counterpart method in another class.
-> 
-> For example, methods on the Block class usually have a counterpart in BlockState. It is fine to override a @Deprecated method in Block, but callers should use the corresponding method in BlockState instead.
+In this case, we have a bunch of warnings about Minecraft code that is using stuff marked as deprecated. Ignore them.
 
 You can sync the project again and it should be much faster now that all the initial setup is done.  
 ![sync output showing Java 11](images/idea64_n04dO6f7LQ.png)  
@@ -194,22 +195,317 @@ Click `Mods` on the main menu.
 You should see the example mod provided with the Forge MDK.  
 ![Minecraft mod list](images/explorer_fBYealYWLj.png)
 
-### [The run configurations might use the wrong SDK](#table-of-contents)
+You can close the game for now.
 
-Weird issue I had.
+## [Switching to Parchment mappings](#table-of-contents)
 
-Project structure showing JBR selected:  
-![IntelliJ screenshot](images/idea64_i34FcAQQhZ.png)
+[ParchmentMC](https://parchmentmc.org/docs/getting-started) provides _mappings_ that help make the deobfuscated Minecraft source code less ugly.
 
-Module SDK showing the JBR selected:  
-![IntelliJ screenshot](images/idea64_p4AbH4PPpU.png)
+In `build.gradle`:  
+```diff
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '5.1.+'
++    // This should be below the net.minecraftforge.gradle plugin
++    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+}
+...
+minecraft {
+...
+-    mappings channel: 'official', version: '1.19.4'
++    mappings channel: 'parchment', version: '1.19.3-2023.03.12-1.19.4'
+...
+}
+```
 
-Run configuration claiming to use the same SDK as the module, but it says it's not the JBR:  
-![IntelliJ screenshot](images/idea64_rYIMRO5dJj.png)
+In `settings.gradle`:  
+```diff
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = 'https://maven.minecraftforge.net/' }
++        maven { url = 'https://maven.parchmentmc.org' } // Add this line
+    }
+}
+```
 
-Yesterday it was running with a JDK I had in my program files. Today it's running with the JBR. I invalidated caches and restarted or something then I went to bed.  
-In this screenshot the log shows it using the JBR SDK, which is what you want. You can manually set the run configuration to use the JBR SDK if it is using the other one for some reason.  
-![IntelliJ screenshot](images/idea64_bhDUDaJJaX.png)
+Sync Gradle after making the changes.  
+![Gradle sync button](images/idea64_grsBHsSwuA.png)
+
+---
+
+Here's an example of an IDE-generated method override to demonstrate what ParchmentMC is doing for us. Pay attention to the parameter names. 
+
+Without ParchmentMC:  
+```java
+    @Override
+    public InteractionResult use(
+            BlockState p_60503_,
+            Level p_60504_,
+            BlockPos p_60505_,
+            Player p_60506_,
+            InteractionHand p_60507_,
+            BlockHitResult p_60508_
+    ) {
+        return super.use(p_60503_, p_60504_, p_60505_, p_60506_, p_60507_, p_60508_);
+    }
+```
+
+With ParchmentMC:
+```java
+    @Override
+    public InteractionResult use(
+            BlockState pState,
+            Level pLevel,
+            BlockPos pPos,
+            Player pPlayer,
+            InteractionHand pHand,
+            BlockHitResult pHit
+    ) {
+        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
+    }
+```
+
+## [Hotswapping](#table-of-contents)
+
+An important part of modding is being able to make changes to your code without having to relaunch the game.
+
+In `ExampleMod.java`, we can switch to using a custom block class for testing hot reloading.
+
+```diff
+    // Creates a new Block with the id "examplemod:example_block", combining the namespace and path
+-    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE)));
++    public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", MyBlock::new);
+```
+
+Lets also make the logger declared in this file public so we can access it from our new block class
+
+```diff
+-    private static final Logger LOGGER = LogUtils.getLogger();
++    public static final Logger LOGGER = LogUtils.getLogger();
+```
+
+Finally, lets create `MyBlock.java`:  
+```java
+package com.example.examplemod;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
+
+public class MyBlock extends Block {
+    public MyBlock() {
+        super(BlockBehaviour.Properties.of(Material.STONE));
+    }
+}
+```
+
+Lets also install the `Single Hotswap` plugin for IDEA.  
+`Ctrl+Alt+S` to open the settings.  
+![plugin panel screenshot](images/idea64_QsjfMJzHwW.png)
+
+Then lets add the keyboard shortcut for reloading changed classes.  
+Personally, I set `Ctrl+Numpad-0` as the binding.  
+![Keymap settings](images/idea64_I6nADAXs5s.png)
+
+Now launch the game.
+
+Create a new world. You should be able to find the block we added by searching in the creative inventory.  
+![Searching for "exam" finds the exampleblock. It has a missing texture.](images/java_7T32yH8hVs.png)
+
+You can place it in the world. It should have no texture at this point.  
+![Block placed in world, black and purple checkerboard missing texture](images/java_C2C9neXll5.png)
+
+Without closing the game, lets make a change to our block.  
+We will override the `use` method, which gets called when our block is right clicked in the world.
+
+You can generate these overrides pretty easily using `Ctrl+O`.  
+![method override picker](images/idea64_n0F7LDpEfN.png)
+
+Minecraft has a bunch of stuff marked with the `@deprecated` annotation, which adds the strikethrough in the override methods picker.
+
+> In some Minecraft classes, there may be methods annotated with @Deprecated. In most situations, the annotation has a special meaning: these methods are fine to override, but these methods should not be directly called, instead preferring a counterpart method in another class.
+> 
+> For example, methods on the Block class usually have a counterpart in BlockState. It is fine to override a @Deprecated method in Block, but callers should use the corresponding method in BlockState instead.
+
+Here's the change we want to make to `MyBlock.java`:  
+```diff
+public class MyBlock extends Block {
+    public MyBlock() {
+        super(BlockBehaviour.Properties.of(Material.STONE));
+        ExampleMod.LOGGER.info("MyBlock constructor called");
+    }
+
++    @Override
++    public InteractionResult use(
++            BlockState state,
++            Level level,
++            BlockPos pos,
++            Player player,
++            InteractionHand hand,
++            BlockHitResult hit
++    ) {
++        level.setBlock(pos, Blocks.DIAMOND_BLOCK.defaultBlockState(), Block.UPDATE_ALL);
++        return InteractionResult.CONSUME;
++    }
+}
+```
+
+
+Hit the keyboard shortcut we just set.  
+You should see a progress bar in the bottom right corner of the IDEA window.  
+![Hot Swap progress bar](images/idea64_iyhXD05NNh.png)
+
+Then it should show a success notification.  
+![class reloaded notification](images/idea64_AV2ehmNIVR.png)
+
+After this change, right clicking the block in the world should replace it with a diamond block.  
+![diamond block in the world](images/java_wZO7jqfxWd.png)
+
+### [Troubleshooting](#table-of-contents)
+
+If you encounter a `Hot Swap failed` message, then your run configuration is probably not using the JBR SDK.
+![error screenshot](images/idea64_E3V9qcOdXY.png)
+
+The very first line of the console when running the game should tell you what JDK is being used.
+
+Bad - path to JDK-17:  
+![console screenshot showing path to jdk-17](images/idea64_knTinvT5pu.png)
+
+Good - path to JBR SDK:  
+![console screenshot showing path to JBR SDK](images/idea64_rP5HpPQ0Kk.png)
+
+You can double check which JDK the run configs are using by clicking the run config dropdown and hitting `Edit Configurations...`.  
+The hotkey shown in this screenshot is one I set myself.    
+![dropdown screenshot](images/idea64_SNcQ46xMoU.png)
+
+The run configurations should be using the SDK of the `main` module.  
+For some reason, it says `java 17` instead of `jbr-17`, but this should still work.  
+![runconfig screenshot with highlight on selected SDK](images/idea64_bi8Dy745wD.png)
+
+If you remember, we set the Project SDK to `jbr-17` already. (Ctrl+Alt+Shift+S)  
+![project structure dialog](images/idea64_nzFHBWfsTc.png)
+
+You _could_ manually set the run configuration JDK to be the `jbr-17` instead of having it follow the module SDK, but that change will get overwritten when you run the `genIntellijRuns` Gradle task again.
+
+Instead, you can try `Invalidate Caches and restart...` from the `File` menu.  
+![file > invalidate caches](images/idea64_FOe3Wro0rZ.png)  
+![invalidate and restart dialog](images/idea64_XDuA0WKACk.png)
+
+## [Regarding sidedness](#table-of-contents)
+
+You should notice that we pass `Block.UPDATE_ALL` as a parameter to the `setBlock` method.  
+This is a bit flag. If you `Ctrl+click` on the code, it should jump to the definition. From there, we can see that `UPDATE_ALL` has the value `3`, which is technically `1 | 2`, which means it will `UPDATE_NEIGHBORS` and `UPDATE_CLIENTS`.
+
+![static final int declarations](images/idea64_qBTw2YJ5VB.png)
+
+Minecraft has a client and a server. When you are running in single player, you are running both the client and the server on the same machine. It is important to be aware of the sided behaviour, and the order in which things happen.
+
+You can set a breakpoint by clicking in the gutter next to the line number.  
+![adding a breakpoint](images/idea64_UU85tVWfDz.png)
+
+Now right click the block again to trigger the breakpoint.
+
+First, the method is called on the client:  
+![debugger paused on use method showing variable values. level: ClientLevel](images/idea64_JlZnsHL8zN.png)
+
+Then on the server:  
+![debugger paused on use method showing variable values. level: ServerLevel](images/idea64_dce0UHapMA.png)
+
+Usually, you want to do things on the server, and if that changes any blocks in the world then the update flags will transmit the changes back to the client.  
+```diff
+    @Override
+    public InteractionResult use(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
++        if (level.isClientSide) {
++            return InteractionResult.SUCCESS;
++        }
+        level.setBlock(pos, Blocks.DIAMOND_BLOCK.defaultBlockState(), Block.UPDATE_ALL);
+-        return InteractionResult.CONSUME;
++        return InteractionResult.SUCCESS; // success seems more appropriate than consume
+    }
+```
+
+## [Regarding singletons](#table-of-contents)
+
+By now may have noticed that the log statement in the block constructor isn't being called when the block is placed in the world.
+
+![logger info call](images/idea64_A0rpzVExaT.png)
+
+This is because a new instance of your block class isn't created every time your block is placed in the world. Instead, your block class is created some time during registry initialization.
+
+Then that block class has methods with parameters like `BlockPos`, `BlockState` and `Level` that handle the logic for doing stuff with the world.
+
+In `ExampleMod.java`:  
+```java
+public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+// Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
+public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+
+// Creates a new Block with the id "examplemod:example_block", combining the namespace and path
+public static final RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", MyBlock::new);
+// Creates a new BlockItem with the id "examplemod:example_block", combining the namespace and path
+public static final RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new BlockItem(EXAMPLE_BLOCK.get(), new Item.Properties()));
+
+public ExampleMod()
+    {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        // Register the Deferred Register to the mod event bus so blocks get registered
+        BLOCKS.register(modEventBus);
+        // Register the Deferred Register to the mod event bus so items get registered
+        ITEMS.register(modEventBus);
+...
+```
+
+We create a `DeferredRegister` object.  
+Then we call `.register` on it a few times to add some suppliers to it.
+Then in the mod constructor, we add the `DeferredRegister` to the mod event bus.  
+Then when the game is loading, Forge fires the `RegistryEvent.Register` event, which is handled by the `DeferredRegister` object, which then calls the suppliers it has been given and adds the results to the registry.
+
+What is important about this process is that there is an order in which things are registered.
+Through the magic of breakpoints, we can even peek and see what is going on!
+
+Set a breakpoint on the block constructor, then relaunch the game.  
+![breakpoint on MyBlock constructor](images/idea64_fUn1FHsXMQ.png)
+
+In the call stac, the `postRegisterEvents` method is what we want to look at.  
+![call stack](images/idea64_tANh789rxt.png)
+
+From here, we can see the exact order that the registries are being populated in.  
+Notably, registering blocks comes before registering items.  
+![ordered list](images/idea64_M264aWFVFv.png)
+
+Here's an overview showing the for-loop.  
+![intellij screenshot with code, stack trace, and variable inspector](images/idea64_ipMDJyfi9L.png)
+
+Get good with breakpoints, and be comfortable digging into the source code for Minecraft, Forge, and mods made by others. Chances are you aren't doing something that hasn't been done before, and you can learn a lot by looking at how other people have done things.
+
+## [Regarding code from others](#table-of-contents)
+
+Learning is great, but make sure you aren't copying code willy-nilly. Software licenses are a thing, and you should be aware of them. You should explicitly assign one to your project, and you should make sure you respect the licenses of other people's projects.
+
+I recommend the Mozilla Public License 2.0. [tl;dr](https://www.tldrlegal.com/license/mozilla-public-license-2-0-mpl-2), [101](https://fossa.com/blog/open-source-software-licenses-101-mozilla-public-license-2-0/), [faq](https://www.mozilla.org/en-US/MPL/2.0/FAQ/)  
+It strikes a good balance between forcing people to share their changes, and allowing people to use your code in their own projects.  
+Having your mod available under an open source license means that people can learn and benefit from your code, and if you die/get tired of updating your shit, then someone will have an easier time getting your mod (or something inspired by it) working on newer versions of the game.
+
+https://choosealicense.com/ is a good place to start if you want to pick one according to your own desires.
+
 
 ## [Creating a dev world](#table-of-contents)
 
@@ -234,9 +530,11 @@ Alternatively, the [tool-kit](https://www.curseforge.com/minecraft/mc-mods/tool-
 /tk devenv true
 ``` -->
 
-## [Some links](#table-of-contents)
+## [Beyond this tutorial](#table-of-contents)
 
-
-https://docs.minecraftforge.net/en/1.19.2/
-
-https://www.youtube.com/@ModdingByKaupenjoe
+- [Read the official Forge docs](https://docs.minecraftforge.net/en/1.19.2/)
+- [Join the official Forge discord](https://discord.minecraftforge.net/)
+  - https://dontasktoask.com/
+  - Use the search to see if someone has resolved a similar issue to yours already
+- [ChatGPT knows about Minecraft modding, might be slightly outdated but still very helpful](https://chat.openai.com/)
+- [Watch some tutorials. This person has some decent videos](https://www.youtube.com/@ModdingByKaupenjoe)
