@@ -25,6 +25,7 @@ I have been doing this since [2014](https://github.com/TeamDman/Animus/commit/9e
     - [Troubleshooting](#troubleshooting)
   - [Regarding sidedness](#regarding-sidedness)
   - [Regarding singletons](#regarding-singletons)
+  - [Reading Minecraft source code](#reading-minecraft-source-code)
   - [Regarding code from others](#regarding-code-from-others)
   - [Texturing \& Resources](#texturing--resources)
   - [Dev world](#dev-world)
@@ -496,6 +497,15 @@ Here's an overview showing the for-loop.
 ![intellij screenshot with code, stack trace, and variable inspector](images/idea64_ipMDJyfi9L.png)
 
 Get good with breakpoints, and be comfortable digging into the source code for Minecraft, Forge, and mods made by others. Chances are you aren't doing something that hasn't been done before, and you can learn a lot by looking at how other people have done things.
+
+## [Reading Minecraft source code](#table-of-contents)
+
+Press shift twice to bring up a search box.  
+You might have to hit shift twice _again_ to turn on `Include non-project items`.
+
+From here, you can find and open the class files for Vanilla stuff for you to learn from.  Just look at the closest Minecraft equivalent for whatever features you want.
+
+![search for "hopperblock" showing "HopperBlockEntity" and "HopperBlock"](images/Tgp6ygpNXX.png)
 
 ## [Regarding code from others](#table-of-contents)
 
