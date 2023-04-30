@@ -538,13 +538,14 @@ Alternatively, the [tool-kit](https://www.curseforge.com/minecraft/mc-mods/tool-
 
 ## [Beyond this tutorial](#table-of-contents)
 
-Reminder that this tutorial is a work in progress.
-
 Here's some things you can do to learn more:
 
 - [Read the official Forge docs](https://docs.minecraftforge.net/en/1.19.2/)
+- [ChatGPT knows about Minecraft modding, might be slightly outdated but still very helpful](https://chat.openai.com/)
+- [Watch some tutorials. This person has some decent videos](https://www.youtube.com/@ModdingByKaupenjoe)
+- Look at some of my recent WIP mods
+  - https://github.com/TeamDman/SuperFactoryManager/tree/1.19.4
+  - https://github.com/TeamDman/Dyelicious
 - [Join the official Forge discord](https://discord.minecraftforge.net/)
   - https://dontasktoask.com/
   - Use the search to see if someone has resolved a similar issue to yours already
-- [ChatGPT knows about Minecraft modding, might be slightly outdated but still very helpful](https://chat.openai.com/)
-- [Watch some tutorials. This person has some decent videos](https://www.youtube.com/@ModdingByKaupenjoe)
